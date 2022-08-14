@@ -1,11 +1,11 @@
-# Lemon app skeleton
+# Ucebnice 
 
-This repository contains advanced skeleton based on Lemon and Laravel mix.
+Digitalizuje burzu ucebnic.
 
-## Instalation
+## Instalace
 
 ```
-$ git clone https://github.com/Lemon-Framework/app
+$ git clone https://github.com/TENMJKL/ucebnice
 
 $ make
 ```

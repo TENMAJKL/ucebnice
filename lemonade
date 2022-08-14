@@ -7,4 +7,6 @@ $lifecycle = include __DIR__.'/init.php';
 // --- Loading commands ---
 $lifecycle->loadCommands();
 
+require __DIR__.'/commands.php';
+
 $lifecycle->get('terminal')->run(array_slice($argv, 1));
