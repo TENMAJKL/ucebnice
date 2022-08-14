@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Years;
 use Lemon\Database\Database;
 use Lemon\Http\Request;
 use Lemon\Http\Response;
@@ -21,7 +20,9 @@ class Auth
             return template('login', error: 'Špatná data.');
         }
 
-        $result = $database->query('SELECT * FROM users WHERE email=:email', email:$request->email);
+        $result = $database->query('SELECT * FROM users WHERE email=:email', email:$request->email)
+                           ->fetchAll()
+                        ;
 
         if (!$result) {
             return template('login', error: 'Tento uživatel neexistuje.');
@@ -46,14 +47,18 @@ class Auth
             'year' => 'max:16',
         ]);
 
-        if (!$validation || !Years::is($request->year)) {
+        $year = $database->query('SELECT id FROM years WHERE name=:name', name: $request->year)
+                         ->fetchAll()
+                     ;
+
+        if (!$validation || $year) {
             template('register', error: 'Špatná data.');
         }
 
         $database->query('INSERT INTO users (email, password, year) VALUES (:email, :password, :year)', 
             email: $request->email,
             password: password_hash($request->password, PASSWORD_ARGON2ID),
-            year: Years::id($request->year),
+            year: $year[0]['id'],
         );
 
         $session->set('email', $request->email);

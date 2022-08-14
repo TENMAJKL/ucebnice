@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0e244d4eda96a0de563b9e41902ad62",
+    "content-hash": "0280e49982b2bbe80991b80177150394",
     "packages": [
         {
             "name": "lemon_framework/lemon",
-            "version": "3.0.2",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lemon-Framework/Lemon.git",
-                "reference": "4253f38c40f9de51b8e602c7943ac32dbc6998d0"
+                "reference": "079f124b3ba4a59fc9bbbd60352076dd9665144d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lemon-Framework/Lemon/zipball/4253f38c40f9de51b8e602c7943ac32dbc6998d0",
-                "reference": "4253f38c40f9de51b8e602c7943ac32dbc6998d0",
+                "url": "https://api.github.com/repos/Lemon-Framework/Lemon/zipball/079f124b3ba4a59fc9bbbd60352076dd9665144d",
+                "reference": "079f124b3ba4a59fc9bbbd60352076dd9665144d",
                 "shasum": ""
             },
             "require": {
@@ -54,9 +54,9 @@
             "description": "Dead simple microframework allowing you to squeeze the most out of your code",
             "support": {
                 "issues": "https://github.com/Lemon-Framework/Lemon/issues",
-                "source": "https://github.com/Lemon-Framework/Lemon/tree/3.0.2"
+                "source": "https://github.com/Lemon-Framework/Lemon/tree/3.1.0"
             },
-            "time": "2022-08-13T11:45:10+00:00"
+            "time": "2022-08-14T13:04:31+00:00"
         },
         {
             "name": "psr/container",
