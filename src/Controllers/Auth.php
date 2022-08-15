@@ -2,10 +2,15 @@
 
 namespace App\Controllers;
 
+use DateInterval;
+use DateTime;
 use Lemon\Database\Database;
 use Lemon\Http\Request;
 use Lemon\Http\Response;
 use Lemon\Http\Session;
+use Lemon\Kernel\Application;
+use Lemon\Support\Types\Str;
+use Lemon\Templating\Template;
 
 class Auth
 {
@@ -39,7 +44,7 @@ class Auth
         return redirect('/');
     }
 
-    public function register(Request $request, Database $database, Session $session)
+    public function register(Request $request, Database $database, Session $session, Application $app): Template
     {
         $validation = $request->validate([
             'email' => 'mail|max:255',
@@ -47,21 +52,66 @@ class Auth
             'year' => 'max:16',
         ]);
 
-        $year = $database->query('SELECT id FROM years WHERE name=:name', name: $request->year)
-                         ->fetchAll()
-                     ;
+        $years = explode("\n", file_get_contents($app->file('years', 'txt')));
 
-        if (!$validation || $year) {
-            template('register', error: 'Špatná data.');
+        if (!$validation) {
+            return template('register', error: 'Špatná data.', years: $years);
         }
 
-        $database->query('INSERT INTO users (email, password, year) VALUES (:email, :password, :year)', 
+        $user = $database->query('SELECT * FROM users WHERE email=:email',
+            email: $request->email
+        )->fetchAll();
+
+        if (count($user) > 0) {
+            return template('register', error: 'Uživatel s tímto emailem již existuje.', years: $years);
+        }
+
+        $year = array_key_first(array_filter($years, fn($item) => $item === $request->year - 1)) + 1;
+        if (is_null($year)) {
+            return template('register', error: 'Špatná data.', years: $years);
+        }
+
+        $database->query('INSERT INTO users (email, password, year, created_at) VALUES (:email, :password, :year, datetime("now"))', 
             email: $request->email,
             password: password_hash($request->password, PASSWORD_ARGON2ID),
-            year: $year[0]['id'],
+            year: $year
         );
 
+        $token = sha1(str_shuffle(Str::random(32).time()));
+
+        $session->set('verification_token', $token);
         $session->set('email', $request->email);
+
+        echo $token;
+
+        mail(
+            $request->email,
+            'Ověření',
+            (string) template('mail.verify', token: $token, url: $_SERVER['HTTP_HOST']),
+            "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso-8859-1\r\nFrom: silder.hologram@gmail.com"
+        );
+
+        return template('register', email: true, years: $years);
+    }
+
+    public function verify($token, Session $session, Database $database): Response
+    {
+        if (!$session->has('verification_token') || $token !== $session->get('verification_token')) {
+            return redirect('register');
+        }
+
+        $result = $database->query('SELECT created_at FROM users WHERE email=:email',
+            email: $session->get('email')
+        )->fetchAll();
+
+        $created_at = DateTime::createFromFormat('Y-m-d H:i:s', $result[0]['created_at']);
+
+        $session->remove('verification_token');
+
+        if ($created_at->add(new DateInterval('P15M'))->getTimestamp() < time()) {
+            $session->remove('email');
+            return redirect('register');
+        }
 
         return redirect('/');
     }

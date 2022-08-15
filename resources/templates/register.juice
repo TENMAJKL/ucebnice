@@ -1,0 +1,23 @@
+{ extends 'layout' }
+
+{ block 'title' }
+    Registrace
+{ /block }
+
+{ block 'content' }
+    {{ $error ?? '' }}
+    { if isset($email) }
+        Poslali jsme vám email s ověřovacím odkazem.
+    { /if }
+    <form method="POST">
+        { csrf }
+        <input type="email" name="email">
+        <input type="password" name="password">
+        <select name="year">
+            { foreach array_slice($years, 0, -1) as $id => $year }
+                <option value="{{ $id + 1 }}">{{ $year }}</option>
+            { /foreach }
+        </select>
+        <button>send</button>
+    </form>
+{ /block }

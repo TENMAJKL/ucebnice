@@ -1,0 +1,11 @@
+<html>
+    <body>
+        <h1>Učebnice</h1>
+
+        Prosíme, ověřte registraci na {{ $url }} pomocí tohoto odkazu:
+
+        <a href="https://{{ $url }}/verify/{{ $token }}">Ověřit</a>
+
+        Pokud jste se neregistrovali tak na tento odkaz neklikejte.
+    </body>
+</html>

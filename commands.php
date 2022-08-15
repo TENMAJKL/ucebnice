@@ -11,3 +11,7 @@ Terminal::command('migrate', function() {
     }
     Terminal::out('<div class="text-green">Done!</div>');
 }, 'Migrates whole app');
+
+Terminal::command('repl', function() {
+    system('psysh init.php > `tty`');
+}, 'Starts development repl');

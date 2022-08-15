@@ -1,0 +1,9 @@
+{ extends 'layout' }
+
+{ block 'title' }
+    Přihlášení
+{ /block }
+
+{ block 'content' }
+    neco
+{ /block }
