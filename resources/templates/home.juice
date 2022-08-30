@@ -5,5 +5,10 @@
 { /block }
 
 { block 'content' }
-    neco
+    <div class="w-full p-16 text-center">
+        <label for="years">Predmet</label>
+        <select id="years" name="">
+            <option value=""></option>
+        </select>
+    </div>    
 { /block }

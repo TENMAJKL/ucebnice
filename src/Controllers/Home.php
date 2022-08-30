@@ -2,9 +2,11 @@
 
 namespace App\Controllers;
 
+use Lemon\Templating\Template;
+
 class Home
 {
-    public function handle()
+    public function get(): Template
     {
         return template('home');
     } 

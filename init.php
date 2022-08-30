@@ -2,7 +2,10 @@
 
 include __DIR__.'/vendor/autoload.php';
 
+use App\Middlewares\Auth;
+use Lemon\Http\Middlewares\Cors;
 use Lemon\Kernel\Application;
+use Lemon\Lemon\Squeezer\Squeezer;
 use Lemon\Protection\Middlwares\Csrf;
 
 $application = new Application(__DIR__);
@@ -22,7 +25,13 @@ $application->get('config')->load();
 $router = $application->get('routing');
 
 $router->file('routes.web')
-    ->middleware(Csrf::class)
+       ->middleware(Csrf::class)
+;
+
+$router->file('routes.api')
+       ->middleware(Cors::class)
+       ->middleware([Auth::class, 'onlyAuthenticated'])
+       ->prefix('api')
 ;
 
 /** @var \Lemon\Validation\Validator $validation*/
@@ -31,5 +40,7 @@ $validation = $application->get('validation');
 $validation->rules()->rule('mail', function(string $target) {
     return str_ends_with($target, '@'.env('EMAIL'));
 });
+
+Squeezer::init($application);
 
 return $application;

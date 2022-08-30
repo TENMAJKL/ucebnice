@@ -1,6 +1,7 @@
 {
     "require": {
-        "lemon_framework/lemon": "^3.1"
+        "lemon_framework/lemon": "^3.4",
+        "lemon_framework/squeezer": "^1.1"
     },
     "autoload": {
         "psr-4": {

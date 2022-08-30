@@ -1,23 +1,18 @@
 <?php
 
-use App\Controllers\Auth;
+use App\Controllers\Auth\Login;
+use App\Controllers\Auth\Register;
+use App\Controllers\Auth\Verify;
 use App\Controllers\Home;
 use App\Middlewares\Auth as AuthMiddleware;
-use Lemon\Kernel\Application;
 use Lemon\Route;
 
 Route::collection(function() {
-    Route::get('/', [Home::class, 'handle']);
-})->middleware([AuthMiddleware::class, 'onlyAuthenticated']);
+    Route::controller('/', Home::class);
+});//->middleware([AuthMiddleware::class, 'onlyAuthenticated']);
 
-Route::collection(function(Application $app) {
-    Route::template('login');
-    Route::get('register', 
-        fn() => template('register', years: explode("\n", file_get_contents($app->file('years', 'txt'))))
-    );
-
-    Route::post('login', [Auth::class, 'login']);
-    Route::post('register', [Auth::class, 'register']);
-
-    Route::get('verify/{token}', [Auth::class, 'verify']);
+Route::collection(function() {
+    Route::controller('login', Login::class);
+    Route::controller('register', Register::class);
+    Route::controller('verify', Verify::class);
 })->middleware([AuthMiddleware::class, 'onlyGuest']);
