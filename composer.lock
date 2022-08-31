@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a145548a437de63d1c457f0e5655697e",
+    "content-hash": "d829dfd01b987828f6a65ad8bb1cea61",
     "packages": [
         {
             "name": "lemon_framework/lemon",
-            "version": "3.4.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lemon-Framework/Lemon.git",
-                "reference": "7944d5311326b2cfcb7ec09a13dc21b7ea0ff0f4"
+                "reference": "02654340be31a65b87ee82e2c7105037ade9515c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lemon-Framework/Lemon/zipball/7944d5311326b2cfcb7ec09a13dc21b7ea0ff0f4",
-                "reference": "7944d5311326b2cfcb7ec09a13dc21b7ea0ff0f4",
+                "url": "https://api.github.com/repos/Lemon-Framework/Lemon/zipball/02654340be31a65b87ee82e2c7105037ade9515c",
+                "reference": "02654340be31a65b87ee82e2c7105037ade9515c",
                 "shasum": ""
             },
             "require": {
@@ -32,6 +32,7 @@
                 "phpstan/phpstan": "^1.4",
                 "phpunit/phpunit": "^9"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -54,50 +55,9 @@
             "description": "A php microframework",
             "support": {
                 "issues": "https://github.com/Lemon-Framework/Lemon/issues",
-                "source": "https://github.com/Lemon-Framework/Lemon/tree/3.4.1"
+                "source": "https://github.com/Lemon-Framework/Lemon/tree/master"
             },
-            "time": "2022-08-30T10:05:22+00:00"
-        },
-        {
-            "name": "lemon_framework/squeezer",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Lemon-Framework/squeezer.git",
-                "reference": "d8bba32d851d9b2fb1504620c66dbcc9c40b48c7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Lemon-Framework/squeezer/zipball/d8bba32d851d9b2fb1504620c66dbcc9c40b48c7",
-                "reference": "d8bba32d851d9b2fb1504620c66dbcc9c40b48c7",
-                "shasum": ""
-            },
-            "require": {
-                "lemon_framework/lemon": "^3.4",
-                "workerman/workerman": "^4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Lemon\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Majkel",
-                    "email": "tenmajkl@proton.me"
-                }
-            ],
-            "description": "Squeezes more out of your lemon app",
-            "support": {
-                "issues": "https://github.com/Lemon-Framework/squeezer/issues",
-                "source": "https://github.com/Lemon-Framework/squeezer/tree/1.1.0"
-            },
-            "time": "2022-08-20T11:49:48+00:00"
+            "time": "2022-08-31T08:49:36+00:00"
         },
         {
             "name": "psr/container",
@@ -252,69 +212,6 @@
                 "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
             },
             "time": "2021-10-29T13:26:27+00:00"
-        },
-        {
-            "name": "workerman/workerman",
-            "version": "v4.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/walkor/workerman.git",
-                "reference": "88ddf517e5c35bee072b2e453c4fcca0c6f1e59a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/walkor/workerman/zipball/88ddf517e5c35bee072b2e453c4fcca0c6f1e59a",
-                "reference": "88ddf517e5c35bee072b2e453c4fcca0c6f1e59a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0"
-            },
-            "suggest": {
-                "ext-event": "For better performance. "
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Workerman\\": "./"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "walkor",
-                    "email": "walkor@workerman.net",
-                    "homepage": "http://www.workerman.net",
-                    "role": "Developer"
-                }
-            ],
-            "description": "An asynchronous event driven PHP framework for easily building fast, scalable network applications.",
-            "homepage": "http://www.workerman.net",
-            "keywords": [
-                "asynchronous",
-                "event-loop"
-            ],
-            "support": {
-                "email": "walkor@workerman.net",
-                "forum": "http://wenda.workerman.net/",
-                "issues": "https://github.com/walkor/workerman/issues",
-                "source": "https://github.com/walkor/workerman",
-                "wiki": "http://doc.workerman.net/"
-            },
-            "funding": [
-                {
-                    "url": "https://opencollective.com/workerman",
-                    "type": "open_collective"
-                },
-                {
-                    "url": "https://www.patreon.com/walkor",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2022-08-20T10:16:22+00:00"
         }
     ],
     "packages-dev": [
@@ -1156,16 +1053,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.16",
+            "version": "9.2.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "2593003befdcc10db5e213f9f28814f5aa8ac073"
+                "reference": "aa94dc41e8661fe90c7316849907cba3007b10d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/2593003befdcc10db5e213f9f28814f5aa8ac073",
-                "reference": "2593003befdcc10db5e213f9f28814f5aa8ac073",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/aa94dc41e8661fe90c7316849907cba3007b10d8",
+                "reference": "aa94dc41e8661fe90c7316849907cba3007b10d8",
                 "shasum": ""
             },
             "require": {
@@ -1221,7 +1118,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.16"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.17"
             },
             "funding": [
                 {
@@ -1229,7 +1126,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-08-20T05:26:47+00:00"
+            "time": "2022-08-30T12:24:04+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3250,7 +3147,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "lemon_framework/lemon": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

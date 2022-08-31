@@ -1,11 +1,15 @@
 {
     "require": {
-        "lemon_framework/lemon": "^3.4",
-        "lemon_framework/squeezer": "^1.1"
+        "lemon_framework/lemon": "dev-master"
     },
     "autoload": {
         "psr-4": {
             "App\\": "src"
+        }
+    },
+   "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
         }
     },
     "config": {

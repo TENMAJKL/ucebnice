@@ -9,7 +9,7 @@ use Lemon\Route;
 
 Route::collection(function() {
     Route::controller('/', Home::class);
-});//->middleware([AuthMiddleware::class, 'onlyAuthenticated']);
+})->middleware([AuthMiddleware::class, 'onlyAuthenticated']);
 
 Route::collection(function() {
     Route::controller('login', Login::class);
