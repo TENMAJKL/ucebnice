@@ -1,18 +1,17 @@
 <?php
 
-use Lemon\Contracts\Http\Session;
+it('wont let unauthorised user', function() {
+    $this->session();
 
-it('wont let unauthorized user')
-    ->request('/')
-    ->assertLocation('login')
-;
+    $this->request('/')
+         ->assertLocation('login')
+    ;
+});
+
 
 it('will let authorised user', function() {
-    $session = mock(Session::class)->expect(
-        has: fn($key) => $key === 'email'
-    );
-    $this->application->add(get_class($session), $session);
-    $this->application->alias(Session::class, get_class($session));
+    
+    $this->session(email: 'foo@bar.xyz');
 
     $this->request('/')
          ->assertOk()

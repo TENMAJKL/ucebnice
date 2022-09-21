@@ -8,10 +8,12 @@ use Lemon\Kernel\Application;
 use Lemon\Database\Database;
 use Lemon\Http\Request;
 use Lemon\Http\Session;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class Register
 {
-    public function post(Request $request, Database $database, Session $session, Application $app): Template
+    public function post(Request $request, Database $database, Session $session, Application $app, MailerInterface $mailer): Template
     {
         $validation = $request->validate([
             'email' => 'mail|max:255',
@@ -49,11 +51,10 @@ class Register
         $session->set('verification_token', $token);
         $session->set('email', $request->email);
 
-        mail(
-            $request->email,
-            'Ověření',
-            (string) template('mail.verify', token: $token, url: $_SERVER['HTTP_HOST']),
-            "MIME-Version: 1.0\r\nContent-type: text/html; charset=iso-8859-1\r\nFrom: silder.hologram@gmail.com"
+        // TODO
+        $mailer->send(
+            (new Email())
+                ->from()
         );
 
         return template('register', email: true, years: $years);

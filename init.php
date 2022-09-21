@@ -5,8 +5,11 @@ include __DIR__.'/vendor/autoload.php';
 use App\Middlewares\Auth;
 use Lemon\Http\Middlewares\Cors;
 use Lemon\Kernel\Application;
-//use Lemon\Lemon\Squeezer\Squeezer;
+use Lemon\Squeezer\Squeezer;
 use Lemon\Protection\Middlwares\Csrf;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport;
 
 $application = new Application(__DIR__);
 
@@ -41,6 +44,10 @@ $validation->rules()->rule('mail', function(string $target) {
     return str_ends_with($target, '@'.env('EMAIL'));
 });
 
-//Squeezer::init($application);
+$application->add(Transport::class);
+$application->add(Mailer::class);
+$application->alias(MailerInterface::class, Mailer::class);
+
+Squeezer::init($application);
 
 return $application;

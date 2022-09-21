@@ -1,6 +1,8 @@
 {
     "require": {
-        "lemon_framework/lemon": "dev-master"
+        "lemon_framework/lemon": "^3.4",
+        "lemon_framework/squeezer": "^1.1",
+        "symfony/mailer": "^6.1"
     },
     "autoload": {
         "psr-4": {

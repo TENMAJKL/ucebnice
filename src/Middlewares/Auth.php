@@ -2,7 +2,7 @@
 
 namespace App\Middlewares;
 
-use \Lemon\Http\Session;
+use Lemon\Contracts\Http\Session;
 
 class Auth
 {
